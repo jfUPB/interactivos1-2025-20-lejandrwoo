@@ -31,5 +31,13 @@ OUTPUT: es la salida, creo que es con p5.js que recibe el mensaje y muestra la f
 
 
   ### PARTE 2:
+  - 1
+  ¿Qué fue más desafiante para ti en esta unidad: la parte conceptual (entender qué es un sistema físico interactivo) o la parte técnica (hacer que el micro:bit y p5.js se comunicaran)? ¿Por qué?
+
+/: La parte técnica fue más desafiante. Aunque entendí el concepto de un sistema físico interactivo, lograr que el micro\:bit se comunicara con p5.js y ver que ambos programas "hablaban el mismo idioma" fue complicado al principio. La configuración del puerto serial y entender dónde escribir cada parte del código fue lo más confuso.
+
+- 2
+Describe el momento “¡Aha!” que tuviste cuando lograste que una acción en el micro:bit (presionar un botón, sacudirlo) tuviera un efecto visible en el canvas de p5.js por primera vez. ¿Qué fue lo que entendiste en ese instante?
+
   
   
