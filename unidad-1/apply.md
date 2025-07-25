@@ -2,7 +2,7 @@
 
 ## 🛠 Fase: Apply
 
-# ACTIVIDAD 5
+# ACTIVIDAD 6
 [Link al P5JS](https://editor.p5js.org/lejandrwoo/sketches/C4VPwmWh2)
 
 ````
@@ -68,4 +68,72 @@ function toggleConnection() {
 <body></body>
 </html>
 ````
+# ACTIVIDAD 5
 
+````
+from microbit import *
+
+uart.init(baudrate=115200)
+
+while True:
+
+    if button_a.is_pressed():
+        uart.write('A')
+    else:
+        uart.write('N')
+
+    sleep(100)
+````
+````
+  let port;
+  let connectBtn;
+  let connectionInitialized = false;
+
+  function setup() {
+    createCanvas(400, 400);
+    background(220);
+    port = createSerial();
+    connectBtn = createButton("Connect to micro:bit");
+    connectBtn.position(80, 300);
+    connectBtn.mousePressed(connectBtnClick);
+  }
+
+  function draw() {
+    background(220);
+
+    if (port.opened() && !connectionInitialized) {
+      port.clear();
+      connectionInitialized = true;
+    }
+
+    if (port.availableBytes() > 0) {
+      let dataRx = port.read(1);
+      if (dataRx == "A") {
+        fill("red");
+      } else if (dataRx == "N") {
+        fill("green");
+      }
+    }
+
+    rectMode(CENTER);
+    rect(width / 2, height / 2, 50, 50);
+
+    if (!port.opened()) {
+      connectBtn.html("Connect to micro:bit");
+    } else {
+      connectBtn.html("Disconnect");
+    }
+  }
+
+  function connectBtnClick() {
+    if (!port.opened()) {
+      port.open("MicroPython", 115200);
+      connectionInitialized = false;
+    } else {
+      port.close();
+    }
+  }
+````
+### EXPLICACIÓN DEL SISTEMA:
+
+Este conjunto de códigos permite que una micro:bit se comunique con una página web mediante comunicación serial. El programa en MicroPython para la micro:bit detecta si el botón A está presionado y envía continuamente por UART la letra 'A' si lo está, o 'N' si no. En paralelo, una interfaz web creada con p5.js utiliza la Web Serial API para conectarse a la micro:bit, leer esos datos y visualizar un rectángulo cuyo color cambia: rojo si recibe 'A' y verde si recibe 'N'. Así, el estado del botón en la micro:bit se refleja en tiempo real en la web, mostrando una interacción sencilla entre hardware y navegador. Despues de todo este sistema funciona de tal manera de que cuando corra en p5.js este mismo dibuje un cuadrado que cuando se presione el boton "A" del microbit el cuadrado cambie de color y vuelve al color original cuando se deje de presionar.
