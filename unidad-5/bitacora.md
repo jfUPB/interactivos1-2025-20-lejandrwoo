@@ -25,5 +25,14 @@ En binario el mismo valor se transmite en solo 2 bytes lo que reduce el tamaño 
 ### VENTAJAS Y DESVENTAJAS: FORMATO BINARIO VS. TEXTO ASCII
 <img width="1024" height="768" alt="Cuadro comparativo proyecto de investigación ilustrado azul y naranja" src="https://github.com/user-attachments/assets/cf356c5e-7226-428b-8b81-289cd7c5c86a" />
 
+### 5.
+### SHAKE
+<img width="979" height="175" alt="3" src="https://github.com/user-attachments/assets/cfb848ad-da69-492d-9d97-88a3272b85f9" />
+<img width="988" height="200" alt="4" src="https://github.com/user-attachments/assets/0764fd81-3bd0-406a-aeb3-2f920c6842c9" />
+
+El micro:bit solo envía datos cuando detecta el gesto de “shake”. Al agitarlo, se transmiten 6 bytes por mensaje. Esto concuerda con el formato >2h2B, donde se envían dos valores del acelerómetro (2 bytes cada uno) y dos estados de botones (1 byte cada uno). Los datos aparecen correctamente en hexadecimal al visualizarse con la aplicación de puerto serial.
+
+
+
 
 
