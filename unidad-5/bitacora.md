@@ -20,3 +20,10 @@ El binario es más difícil de leer porque, aunque es compacto y eficiente, no r
 En cambio, el texto ASCII es legible, pero consume más espacio al representar la información.
 Por ejemplo, el número 1024 en ASCII se envía como los caracteres “1, 0, 2, 4”, ocupando 4 bytes.
 En binario el mismo valor se transmite en solo 2 bytes lo que reduce el tamaño y aumenta la velocidad.
+
+### 4.
+### VENTAJAS Y DESVENTAJAS: FORMATO BINARIO VS. TEXTO ASCII
+<img width="1024" height="768" alt="Cuadro comparativo proyecto de investigación ilustrado azul y naranja" src="https://github.com/user-attachments/assets/cf356c5e-7226-428b-8b81-289cd7c5c86a" />
+
+
+
