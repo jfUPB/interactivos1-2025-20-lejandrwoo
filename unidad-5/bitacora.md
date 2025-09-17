@@ -76,6 +76,9 @@ if (newBState === false && prevmicroBitBState === true) {
 
 Así se generan eventos en p5.js basados en los datos que envía el micro:bit.
 
+![prueba2](https://github.com/user-attachments/assets/363fe9df-3e7d-49a6-941c-4d1b7bd4d99e)
+![pruebas](https://github.com/user-attachments/assets/18992595-0506-4cdf-b426-297d124bff3d)
+
 
 
 # ACTIVIDAD 2
@@ -148,6 +151,7 @@ Los datos binarios son solo una secuencia de bytes, sin un significado por sí m
 En ASCII en cambio si no sabes el formato puedes intuir que estos son números separados de comas: -123,456,1,0. Es como recibir un mensaje cifrado: sin la clave del formato, no puedes entender el contenido.
 
 # ACTIVIDAD 3
+
 
 
 
