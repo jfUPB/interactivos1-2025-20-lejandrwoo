@@ -134,7 +134,7 @@ legible, fácil de depurar.
 ### Desventajas: 
 ocupa más espacio, más lento de procesar.
 
-### PREGUNTAS DE REFLEXIÓN: 
+## PREGUNTAS DE REFLEXIÓN: 
 ### ¿En qué situaciones reales sería mejor usar binario en lugar de ASCII?
 Cuando necesite transmitir datos rapidamente y con poco espacio como en sensores, algun videojuego o comunicacion entre dispositivos.
 
@@ -151,6 +151,7 @@ Los datos binarios son solo una secuencia de bytes, sin un significado por sí m
 En ASCII en cambio si no sabes el formato puedes intuir que estos son números separados de comas: -123,456,1,0. Es como recibir un mensaje cifrado: sin la clave del formato, no puedes entender el contenido.
 
 # ACTIVIDAD 3
+
 
 
 
