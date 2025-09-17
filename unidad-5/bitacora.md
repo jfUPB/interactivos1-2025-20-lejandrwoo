@@ -147,6 +147,11 @@ Los datos binarios son solo una secuencia de bytes, sin un significado por sí m
 
 En ASCII en cambio si no sabes el formato puedes intuir que estos son números separados de comas: -123,456,1,0. Es como recibir un mensaje cifrado: sin la clave del formato, no puedes entender el contenido.
 
+# ACTIVIDAD 3
+
+
+
+
 
 
 
