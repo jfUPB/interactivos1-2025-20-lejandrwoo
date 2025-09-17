@@ -1,5 +1,82 @@
 
 # Evidencias de la unidad 5
+# ACTIVIDAD 1
+### 1. Describe cómo se están comunicando el micro:bit y el sketch de p5.js. ¿Qué datos envía el micro:bit?
+
+El micro:bit se comunica con el navegador a través de UART (puerto serie a 115200 baudios). Cada 100 ms (10 veces por segundo) envía un mensaje en ASCII con 4 datos separados por comas:
+
+* xValue: posición en el eje X del acelerómetro.
+* yValue: posición en el eje Y del acelerómetro.
+* aState: estado del botón A (True/False).
+* bState: estado del botón B (True/False).
+
+El sketch en p5.js recibe esa cadena, la interpreta y la usa para dibujar.
+
+### 2. ¿Cómo es la estructura del protocolo ASCII usado?
+
+Cada mensaje sigue esta estructura:
+
+xValue,yValue,aState,bState\n
+
+
+### EJEMPLO DE LO QUE MAS O MENOS SE VERIA EN LA CAPTURA DE PANTALLA (PROXIMAMENTE):
+```
+-123,456,True,False
+```
+
+
+* Los valores están separados por comas.
+* El salto de línea \n indica el final del mensaje.
+* Es un protocolo legible por uno  mismo, lo que facilita depuración, pero ocupa más espacio que binario.
+
+### 3. Muestra y explica la parte del código de p5.js donde lee los datos del micro:bit y los transforma en coordenadas de la pantalla.
+```
+if (port.availableBytes() > 0) {
+  let data = port.readUntil("\n");
+  if (data) {
+    data = data.trim();
+    let values = data.split(",");
+    if (values.length == 4) {
+      microBitX = int(values[0]) + windowWidth / 2;
+      microBitY = int(values[1]) + windowHeight / 2;
+      microBitAState = values[2].toLowerCase() === "true";
+      microBitBState = values[3].toLowerCase() === "true";
+      updateButtonStates(microBitAState, microBitBState);
+    }
+  }
+}
+```
+
+* El puerto serie se lee hasta \n.
+* La cadena se divide por comas en un arreglo de 4 elementos.
+* xValue y yValue se convierten a enteros y se ajustan al centro de la pantalla (+ windowWidth/2 y + windowHeight/2).
+* aState y bState se transforman en booleanos (true o false).
+
+### 4. ¿Cómo se generan los eventos A pressed y B released que se generan en p5.js a partir de los datos que envía el micro:bit?
+
+En la función updateButtonStates(newAState, newBState) se comparan los estados actuales (newAState, newBState) con los estados previos (prevmicroBitAState, prevmicroBitBState):
+```
+if (newAState === true && prevmicroBitAState === false) {
+  lineModuleSize = random(50, 160);
+  clickPosX = microBitX;
+  clickPosY = microBitY;
+  print("A pressed");
+}
+```
+```
+if (newBState === false && prevmicroBitBState === true) {
+  c = color(random(255), random(255), random(255), random(80, 100));
+  print("B released");
+}
+```
+
+
+* A pressed se detecta cuando antes estaba en false y ahora está en true.
+* B released se detecta cuando antes estaba en true y ahora pasa a false.
+
+Así se generan eventos en p5.js basados en los datos que envía el micro:bit.
+
+
 
 # ACTIVIDAD 2
 ### 1. 
@@ -69,6 +146,7 @@ Seria mas grande el mensaje por ahi 10 bytes en vez de 6 y tardaria un poco mas 
 Los datos binarios son solo una secuencia de bytes, sin un significado por sí mismos. El significado se lo da el formato que define cómo deben interpretarse. Si el otro dispositivo no sabe que esos 6 bytes están organizados como xValue (2 bytes), yValue (2 bytes), aState (1 byte), bState (1 byte), lo único que verá serán valores que parecen símbolos o números extraños.
 
 En ASCII en cambio si no sabes el formato puedes intuir que estos son números separados de comas: -123,456,1,0. Es como recibir un mensaje cifrado: sin la clave del formato, no puedes entender el contenido.
+
 
 
 
