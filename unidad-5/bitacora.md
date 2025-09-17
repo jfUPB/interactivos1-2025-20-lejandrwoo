@@ -32,6 +32,43 @@ En binario el mismo valor se transmite en solo 2 bytes lo que reduce el tamaño 
 
 El micro:bit solo envía datos cuando detecta el gesto de “shake”. Al agitarlo, se transmiten 6 bytes por mensaje. Esto concuerda con el formato >2h2B, donde se envían dos valores del acelerómetro (2 bytes cada uno) y dos estados de botones (1 byte cada uno). Los datos aparecen correctamente en hexadecimal al visualizarse con la aplicación de puerto serial.
 
+### ¿Qué diferencias hay entre los datos en ASCII y en binario?
+
+En binario los datos son compactos, se transmiten rápido, pero son ilegibles para humanos.
+
+En ASCII los datos son más largos y lentos de procesar, pero fáciles de leer y depurar.
+
+### ¿Qué ventajas y desventajas se ven en binario?
+
+### Ventajas: 
+compacto, eficiente, rápido de transmitir.
+
+### Desventajas: 
+ilegible para humanos, dependes del formato exacto.
+
+### ¿Qué ventajas y desventajas se ven en ASCII?
+
+### Ventajas: 
+legible, fácil de depurar.
+
+### Desventajas: 
+ocupa más espacio, más lento de procesar.
+
+### PREGUNTAS DE REFLEXIÓN: 
+### ¿En qué situaciones reales sería mejor usar binario en lugar de ASCII?
+Cuando necesite transmitir datos rapidamente y con poco espacio como en sensores, algun videojuego o comunicacion entre dispositivos.
+
+### ¿Cómo podrías combinar lo mejor de ambos mundos (binario + ASCII) en un mismo sistema de comunicación?
+Podria enviar los datos en binario para procesarlos y mandar una copia en ASCII para depurarlos.
+
+### ¿Qué impacto tendría en la memoria y en la velocidad si en lugar de h se usa i (enteros de 32 bits) para xValue y yValue?
+Seria mas grande el mensaje por ahi 10 bytes en vez de 6 y tardaria un poco mas en transmitirse pero permitiria números mas grandes.
+
+### ¿Qué pasaría si otro dispositivo recibiera estos datos binarios sin conocer el formato >2h2B?
+
+Los datos binarios son solo una secuencia de bytes, sin un significado por sí mismos. El significado se lo da el formato que define cómo deben interpretarse. Si el otro dispositivo no sabe que esos 6 bytes están organizados como xValue (2 bytes), yValue (2 bytes), aState (1 byte), bState (1 byte), lo único que verá serán valores que parecen símbolos o números extraños.
+
+En ASCII en cambio si no sabes el formato puedes intuir que estos son números separados de comas: -123,456,1,0. Es como recibir un mensaje cifrado: sin la clave del formato, no puedes entender el contenido.
 
 
 
