@@ -226,6 +226,184 @@ Podrían empezar a llegar paquetes más rápido de lo que el programa los puede 
 
 
 # ACTIVIDAD 4: 
+```
+'use strict';
+
+var formResolution = 15;
+var stepSize = 2;
+var initRadius = 150;
+var centerX;
+var centerY;
+var x = [];
+var y = [];
+var filled = false; 
+var freeze = false;
+
+let port;
+let reader;
+let xValue = 0;
+let yValue = 0;
+let aState = 0;
+let bState = 0;
+
+// --- CONSTANTES DEL PROTOCOLO ---
+const HEADER = 0xAA;
+const PACKET_SIZE = 1 + 2 + 2 + 1 + 1 + 1; 
+// Header(1) + x(2) + y(2) + a(1) + b(1) + checksum(1) = 8 bytes
+
+async function connectMicrobit() {
+  try {
+    port = await navigator.serial.requestPort();
+    await port.open({ baudRate: 115200 });
+    reader = port.readable.getReader();
+    document.getElementById("status").innerText = "Estado: conectado";
+
+    readLoop();
+  } catch (err) {
+    console.error("Error conectando al micro:bit: ", err);
+  }
+}
+
+async function readLoop() {
+  let buffer = new Uint8Array();
+
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+    if (!value) continue;
+
+    // Concatenar al buffer
+    let temp = new Uint8Array(buffer.length + value.length);
+    temp.set(buffer, 0);
+    temp.set(value, buffer.length);
+    buffer = temp;
+
+    // Procesar paquetes
+    while (buffer.length >= PACKET_SIZE) {
+      if (buffer[0] !== HEADER) {
+        // descartar hasta encontrar header
+        buffer = buffer.slice(1);
+        continue;
+      }
+
+      let packet = buffer.slice(0, PACKET_SIZE);
+      buffer = buffer.slice(PACKET_SIZE);
+
+      // Validar checksum
+      let data = packet.slice(1, -1); 
+      let checksum = packet[packet.length - 1];
+      let sum = 0;
+      for (let b of data) sum += b;
+      sum %= 256;
+
+      if (sum !== checksum) {
+        console.warn("Checksum inválido");
+        continue;
+      }
+
+      // Decodificar datos
+      let dv = new DataView(packet.buffer);
+      xValue = dv.getInt16(1, false); // big-endian
+      yValue = dv.getInt16(3, false);
+      aState = dv.getUint8(5);
+      bState = dv.getUint8(6);
+    }
+  }
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+
+  centerX = width / 2;
+  centerY = height / 2;
+  let angle = radians(360 / formResolution);
+  for (let i = 0; i < formResolution; i++) {
+    x.push(cos(angle * i) * initRadius);
+    y.push(sin(angle * i) * initRadius);
+  }
+
+  stroke(0, 50);
+  strokeWeight(0.75);
+  background(255);
+
+  document.getElementById("connectBtn").addEventListener("click", connectMicrobit);
+}
+
+function draw() {
+  centerX += (map(xValue, -1024, 1024, 0, width) - centerX) * 0.01;
+  centerY += (map(yValue, -1024, 1024, 0, height) - centerY) * 0.01;
+
+  for (let i = 0; i < formResolution; i++) {
+    x[i] += random(-stepSize, stepSize);
+    y[i] += random(-stepSize, stepSize);
+  }
+
+  if (aState === 1) {
+    noFill();
+  } else if (bState === 1) {
+    fill(random(255), random(255), random(255), 100);
+  } else {
+    if (filled) {
+      fill(random(255), random(255), random(255), 100);
+    } else {
+      noFill();
+    }
+  }
+
+  beginShape();
+  curveVertex(x[formResolution - 1] + centerX, y[formResolution - 1] + centerY);
+  for (let i = 0; i < formResolution; i++) {
+    curveVertex(x[i] + centerX, y[i] + centerY);
+  }
+  curveVertex(x[0] + centerX, y[0] + centerY);
+  curveVertex(x[1] + centerX, y[1] + centerY);
+  endShape();
+}
+
+```
+### Código en el micro:bit
+
+Se implementó un envío de datos en formato binario usando struct.pack('>2h2B').
+
+### Incluye:
+
+* Header: 0xAA
+
+* Acelerómetro en X (2 bytes, entero con signo)
+
+* Acelerómetro en Y (2 bytes, entero con signo)
+
+* Estado de botón A (1 byte)
+
+* Estado de botón B (1 byte)
+
+* Checksum (1 byte, suma de datos módulo 256)
+
+
+### Código en p5.js
+
+* Se reemplazó la decodificación en ASCII (TextDecoder) por un lector binario.
+
+* Se implementó un buffer circular que:
+
+* Busca el header 0xAA.
+
+* Valida el tamaño del paquete (8 bytes).
+
+* Revisa el checksum.
+
+* Decodifica los valores con DataView.
+
+
+### Conclusiones
+
+* Se logró migrar la aplicación de comunicación ASCII a un protocolo binario más eficiente y compacto.
+
+* La validación con header y checksum garantiza confiabilidad frente a paquetes dañados.
+
+* Se comprendió cómo trabajar con struct en Python y DataView en JavaScript para decodificar los datos en el mismo orden.
+
+* Los experimentos confirmaron que los enteros de 16 bits y los bytes de botones fueron interpretados correctamente.
 
 
 
