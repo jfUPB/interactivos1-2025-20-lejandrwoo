@@ -151,6 +151,82 @@ Los datos binarios son solo una secuencia de bytes, sin un significado por sí m
 En ASCII en cambio si no sabes el formato puedes intuir que estos son números separados de comas: -123,456,1,0. Es como recibir un mensaje cifrado: sin la clave del formato, no puedes entender el contenido.
 
 # ACTIVIDAD 3
+### 1. ¿Por qué en la unidad anterior teníamos que enviar la información delimitada y además marcada con un salto de línea y ahora no es necesario?
+
+En la unidad anterior, los datos se enviaban como texto (strings), por ejemplo:
+```
+"500,524,True,False\n"
+```
+Entonces, necesitábamos un delimitador (como la coma ,) para separar cada valor y un salto de línea (\n) para saber cuándo terminaba un paquete.
+
+En cambio, ahora los datos se envían como binarios, en un tamaño fijo de 6 bytes, entonces ya sabemos exactamente cuántos bytes corresponden a cada dato (2 bytes para x, 2 para y, 1 para aState y 1 para bState). Como el tamaño es siempre el mismo, no se necesita ningún carácter especial para saber dónde empieza o termina el paquete.
+
+
+### 2. ¿Qué cambios observas entre el código anterior y el actual al recibir los datos seriales?
+### Antes:
+Se leían líneas de texto (port.readLine()) y se separaban los valores con .split(',').
+
+### Ahora:
+Se leen directamente 6 bytes con port.readBytes(6), y se interpretan usando DataView como números binarios (enteros y booleanos).
+
+
+* Y ahora se utiliza DataView para leer esos bytes como getInt16 (para x e y) y getUint8 (para aState y bState), que son lecturas más precisas y seguras para datos binarios.
+
+
+### 3. ¿Qué ves en la consola? ¿Por qué crees que se produce este error?
+
+Cuando ejecuto el código varias veces, veo que a veces aparecen valores extraños o inesperados, como:
+```
+microBitX: 500 microBitY: 524
+microBitX: 3073 microBitY: 1
+```
+
+Esto pasa porque el programa de p5.js lee mal los datos, como si empezara a leer desde la mitad de un paquete, o mezclando bytes de dos paquetes distintos.
+
+Es un error de sincronización. Como no hay una forma de saber dónde empieza el paquete (porque todos los bytes parecen válidos), se pierde la alineación correcta, y entonces se interpretan mal los valores.
+
+
+
+### 4. ¿Qué cambios tienen los programas y qué puedes observar en la consola del editor de p5.js?
+
+
+* Se añade un byte de inicio (0xAA) → para marcar el comienzo del paquete.
+
+* Se calcula un checksum (la suma de los 6 bytes de datos, módulo 256) → para asegurar que los datos llegaron bien.
+
+* El paquete ahora tiene 8 bytes: header (1) + data (6) + checksum (1)
+
+### Observaciones en p5.js:
+
+* Se crea un buffer serial que acumula todos los bytes que llegan.
+
+* Se busca el header 0xAA dentro del buffer.
+
+* Solo si hay 8 bytes disponibles y el checksum es válido, se procesan los datos.
+
+* Si hay error de checksum, se descarta el paquete y se sigue buscando el siguiente válido.
+
+
+## Preguntas que me surgieron como estudiante:
+###¿Qué pasa si el byte 0xAA aparece dentro de los datos?
+
+Si un dato binario tiene el valor 0xAA, puede parecer un header. En este caso como el header va solo al principio, y el tamaño es fijo, no hay mucho problema mientras el framing funcione.
+
+### ¿Qué pasaría si el checksum falla muchas veces seguidas?
+
+Son señales de ruido en la conexión, problemas de velocidad (desincronización), cable USB defectuoso. El checksum nos ayuda a detectar el problema, pero no a solucionarlo. Por eso también se puede implementar un contador de errores, o incluso reenviar paquetes.
+
+### ¿Por qué se usa buffer y DataView en p5.js?
+
+Porque en JavaScript no se pueden leer los datos binarios directamente como enteros o bytes. DataView nos permite interpretar cualquier porción de un ArrayBuffer como el tipo que queramos: getInt16, getUint8, etc.
+
+### ¿Qué pasaría si los datos se enviaran a una velocidad más alta (por ejemplo, 1000 Hz)?
+
+Podrían empezar a llegar paquetes más rápido de lo que el programa los puede procesar. Eso haría que el buffer se llene, y podríamos empezar a perder paquetes o tener errores más frecuentes. Por eso se usa sleep(100) en micro:bit (para enviar a solo 10 Hz), que es una frecuencia muy segura para este tipo de proyectos.
+
+
+# ACTIVIDAD 4: 
+
 
 
 
