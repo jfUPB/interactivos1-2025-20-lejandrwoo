@@ -405,6 +405,16 @@ Se implementó un envío de datos en formato binario usando struct.pack('>2h2B')
 
 * Los experimentos confirmaron que los enteros de 16 bits y los bytes de botones fueron interpretados correctamente.
 
+| **Criterio**                                   | **Autoevaluación** | **Mi nivel**                                                                                                                                                                                                    |
+| ---------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Profundidad de la Indagación**            | Logrado            | 3.9 Formulé preguntas sobre el funcionamiento de binario vs ASCII y entendí la necesidad del framing. No profundicé en escenarios alternativos, pero sí busqué las causas raíz de algunos errores.                  |
+| **2. Calidad de la Experimentación**           | Logrado            | 4.0 Realicé pruebas con los botones, movimientos extremos del acelerómetro y verifiqué el manejo de checksum. Pero me faltaron algunas capturas.                   |
+| **3. Análisis y Reflexión**                    | Logrado            | 4.1 Expliqué cosas cómo el header y el checksum aportan robustez al protocolo, relacionando la evidencia con la teoría, aunque no profundicé en trade-offs de eficiencia. |
+| **4. Apropiación y Articulación de Conceptos** | Logrado            | 3.9 Usé mis propias palabras para explicar header, checksum, DataView y struct.pack. Me apropié de los conceptos, aunque sin desarrollar analogías más avanzadas o un modelo sistémico completo.  |
+
+
+ME PONDRIA UN 4.0
+
 
 
 
