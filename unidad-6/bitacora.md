@@ -1,5 +1,6 @@
 
 # Evidencias de la unidad 6
+# ACTIVIDAD 2
 
 ## 1. Conexión a Internet
 
@@ -54,3 +55,4 @@ Node.js permite usar JavaScript en cliente y servidor, lo que facilita el desarr
 ## 8. HTTP vs WebSockets/Socket.IO
 
 HTTP funciona por petición y respuesta, como una carta. WebSockets mantiene una conexión abierta, como una llamada. Se usa en chats, videojuegos online, editores colaborativos y videollamadas.
+
