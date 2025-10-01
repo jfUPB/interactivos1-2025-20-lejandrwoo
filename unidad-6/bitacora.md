@@ -52,7 +52,8 @@ El bucle draw() redibuja todo el tiempo aunque no haya cambios. El modelo de eve
 
 Node.js permite usar JavaScript en cliente y servidor, lo que facilita el desarrollo y evita aprender dos lenguajes distintos.
 
-## 8. HTTP vs WebSockets/Socket.IO
+# HTTP vs WebSockets/Socket.IO
 
-HTTP funciona por petición y respuesta, como una carta. WebSockets mantiene una conexión abierta, como una llamada. Se usa en chats, videojuegos online, editores colaborativos y videollamadas.
+HTTP funciona como una carta: el navegador envía una petición y espera la respuesta del servidor. En cambio, WebSockets o Socket.IO mantienen una conexión abierta, como una llamada, permitiendo el envío de datos en tiempo real. Esto es útil en aplicaciones donde se necesita velocidad e interacción constante, como chats, videojuegos online, videollamadas, editores colaborativos (como Google Docs), notificaciones en redes sociales o apps de transporte donde ves la ubicación en vivo. Mientras HTTP es ideal para páginas estáticas o formularios, WebSockets se usa cuando la rapidez y la comunicación continua son clave.
+
 
