@@ -58,6 +58,7 @@ HTTP funciona como una carta: el navegador envía una petición y espera la resp
 
 # ACTIVIDAD 5:
 En esta actividad, la idea principal consistía en recrear una especie de eclipse solar. Durante el desarrollo se presentaron varios problemas evidentes; dos de los más importantes se pueden observar en el video que adjunto. Además, tuve dificultades para comprender cómo hacer que los dos servidores (ventanas) generaran ese "puente" necesario para que la bolita o bolitas cumplieran el objetivo planteado. Aun así, dejo registrado el proceso con los avances que logré alcanzar.
-https://youtube.com/shorts/vUBZzBKCwV0
+[Enlace video](https://youtube.com/shorts/vUBZzBKCwV0)
+
 
 
