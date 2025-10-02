@@ -1,5 +1,27 @@
 
 # Evidencias de la unidad 6
+# ACTIVIDAD 1
+## ¿Qué ocurrió en la terminal cuando ejecutaste npm install? ¿Cuál crees que es su propósito?
+<img width="715" height="256" alt="image" src="https://github.com/user-attachments/assets/3b35d5da-1937-47d3-b5bc-fd8d68099d13" />
+<img width="252" height="112" alt="image" src="https://github.com/user-attachments/assets/307056b1-94e3-41c9-8dd8-2fd266a57143" />
+
+* Ahi lo que pasa es para descargar un archivo ya que tengo entendido que npm es para administrar librerias y paquetes.
+
+## ¿Qué mensaje específico apareció en la terminal después de ejecutar npm start? ¿Qué indica este mensaje?
+<img width="295" height="53" alt="image" src="https://github.com/user-attachments/assets/ea3e3cf7-94c3-470f-906c-d0f37e1f54c3" />
+
+* El mensaje confirma que se ha iniciado la aplicación. El comando npm start está activando el script start en el package.json, el cual ejecuta el archivo server.js con Node.js.
+
+## Describe lo que ves inicialmente en page1 y page2 en tu navegador.
+Hay una bolita roja en cada ventana y estas mismas son unidas por una cuerda que atraviesa la ventana de al lado para llegar a la bolita vecina.
+## ¿Qué mensajes aparecieron en la terminal del servidor cuando abriste page1 y page2?
+```
+Server is listening on http://localhost:3000
+A user connected - ID: A6gD9-j2sXhT7mK8wRzYvB5uE3pL
+```
+## Describe qué sucede en ambas páginas del navegador cuando mueves una de las ventanas. ¿Cambia algo visualmente? 
+Los cambios es que sin importar para donde uno mueva una ventana las bolitas rojas seguiran unidas por la cuerda, ya sea que esten cerca o muy lejos, osea que la ubicación esta constantemente actualizandose para que se vea ese efecto por asi decirlo.
+
 # ACTIVIDAD 2
 
 ## 1. Conexión a Internet
@@ -59,6 +81,7 @@ HTTP funciona como una carta: el navegador envía una petición y espera la resp
 # ACTIVIDAD 5:
 En esta actividad, la idea principal consistía en recrear una especie de eclipse solar. Durante el desarrollo se presentaron varios problemas evidentes; dos de los más importantes se pueden observar en el video que adjunto. Además, tuve dificultades para comprender cómo hacer que los dos servidores (ventanas) generaran ese "puente" necesario para que la bolita o bolitas cumplieran el objetivo planteado. Aun así, dejo registrado el proceso con los avances que logré alcanzar.
 [Enlace video](https://youtube.com/shorts/vUBZzBKCwV0)
+
 
 
 
