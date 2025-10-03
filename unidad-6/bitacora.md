@@ -125,7 +125,191 @@ El experimento me enseño que la variable port es como el numero de canal que le
 En esta actividad, la idea principal consistía en recrear una especie de eclipse solar. Durante el desarrollo se presentaron varios problemas evidentes; dos de los más importantes se pueden observar en el video que adjunto. Además, tuve dificultades para comprender cómo hacer que los dos servidores (ventanas) generaran ese "puente" necesario para que la bolita o bolitas cumplieran el objetivo planteado. Aun así, dejo registrado el proceso con los avances que logré alcanzar.
 [Enlace video](https://youtube.com/shorts/vUBZzBKCwV0)
 
+## REDENCIÓN:
+Al final decidi empezar de nuevo con otra cosa, asi que arme un servidor que conecta en tiempo real dos ventanas del navegador, donde cada una representa a un jugador. Yo controlo mi paleta con el mouse y la otra persona controla la suya en su ventana mientras compartimos una sola bola que rebota en las paredes y en las paletas, en pocas palabras hice un pong.
+Aca dejare un video con algunas de las pruebas que realice:
 
+
+
+https://github.com/user-attachments/assets/cfb7ca11-9e01-4de1-a0dc-2d6d5f5ca1cf
+
+
+### Códigos:
+
+```
+const express = require("express");
+const app = express();
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
+
+app.use(express.static("public"));
+
+const PORT = 3000;
+
+let CANVAS = { width: 1200, height: 600 };
+
+let players = {};
+let scores = { left: 0, right: 0 };
+
+let ball = { x: CANVAS.width / 2, y: CANVAS.height / 2, vx: 5, vy: 3, r: 10 };
+
+function resetBall(side) {
+  ball.x = CANVAS.width / 2;
+  ball.y = CANVAS.height / 2;
+  ball.vx = side === "left" ? 5 : -5;
+  ball.vy = 3;
+}
+
+io.on("connection", (socket) => {
+  console.log("Jugador conectado:", socket.id);
+
+  players[socket.id] = {
+    side: Object.keys(players).length === 0 ? "left" : "right",
+    y: CANVAS.height / 2,
+    h: 100,
+    w: 15,
+  };
+
+  socket.on("move", (y) => {
+    if (players[socket.id]) {
+      players[socket.id].y = y;
+    }
+  });
+
+  socket.on("disconnect", () => {
+    delete players[socket.id];
+  });
+});
+
+setInterval(() => {
+  // mover pelota
+  ball.x += ball.vx;
+  ball.y += ball.vy;
+
+  if (ball.y - ball.r < 0 || ball.y + ball.r > CANVAS.height) {
+    ball.vy *= -1;
+  }
+
+  for (let id in players) {
+    let p = players[id];
+
+    if (p.side === "left") {
+
+      if (
+        ball.x - ball.r <= p.w &&
+        ball.y >= p.y - p.h / 2 &&
+        ball.y <= p.y + p.h / 2
+      ) {
+        ball.vx = Math.abs(ball.vx);      
+        ball.x = p.w + ball.r;            
+      }
+    }
+
+    if (p.side === "right") {
+      // Paleta derecha está en x = CANVAS.width - p.w/2
+      if (
+        ball.x + ball.r >= CANVAS.width - p.w &&
+        ball.y >= p.y - p.h / 2 &&
+        ball.y <= p.y + p.h / 2
+      ) {
+        ball.vx = -Math.abs(ball.vx);     // rebote hacia la izquierda
+        ball.x = CANVAS.width - p.w - ball.r;
+      }
+    }
+  }
+
+  // puntos
+  if (ball.x - ball.r < 0) {
+    scores.right++;
+    resetBall("right");
+  }
+  if (ball.x + ball.r > CANVAS.width) {
+    scores.left++;
+    resetBall("left");
+  }
+
+  io.emit("gameState", { ball, players, scores });
+}, 1000 / 60);
+
+http.listen(PORT, () => {
+  console.log(`Servidor en http://localhost:${PORT}`);
+});
+```
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Pong Multiplayer</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body style="margin:0; padding:0; overflow:hidden;"></body>
+</html>
+```
+```
+let socket;
+let ball;
+let players = {};
+let scores = {};
+
+let side = null; // izquierda o derecha
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  socket = io();
+
+  socket.on("gameState", (state) => {
+    ball = state.ball;
+    players = state.players;
+    scores = state.scores;
+    if (socket.id in players) {
+      side = players[socket.id].side;
+    }
+  });
+}
+
+function draw() {
+  background(0);
+
+  if (!ball) return;
+
+  stroke(255);
+  strokeWeight(2);
+  for (let y = 0; y < height; y += 20) {
+    line(width / 2, y, width / 2, y + 10);
+  }
+
+  noStroke();
+  fill(255);
+
+  ellipse(ball.x * (width / 1200), ball.y * (height / 600), 20);
+
+  for (let id in players) {
+    let p = players[id];
+    let px =
+      p.side === "left" ? 20 : width - 20;
+    rectMode(CENTER);
+    rect(
+      px,
+      p.y * (height / 600),
+      15,
+      p.h
+    );
+  }
+
+  textSize(48);
+  textAlign(CENTER, TOP);
+  fill(255);
+  text(scores.left, width / 4, 20);
+  text(scores.right, (3 * width) / 4, 20);
+}
+
+function mouseMoved() {
+  socket.emit("move", mouseY * (600 / height));
+}
+```
 
 
 
