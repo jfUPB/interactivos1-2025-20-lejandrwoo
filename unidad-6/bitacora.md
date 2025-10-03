@@ -310,6 +310,17 @@ function mouseMoved() {
   socket.emit("move", mouseY * (600 / height));
 }
 ```
+## AUTOEVALUACIÓN:
+| **Criterio (Actividad)**                                     | **Nivel alcanzado**             | **Justificación**                                                                                                                       | **Nota** |
+| ------------------------------------------------------------ | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| **Actividad 1: Preparación del entorno**                     | Completada                      | Instalé Node.js, ejecuté `npm install` y `npm start`, y comprobé que el servidor funcionaba correctamente.                              | 5      |
+| **Actividad 2: Conceptos Internet, Cliente-Servidor y HTTP** | Completada                      | Expliqué los conceptos de manera clara, comparé HTTP y serial, y entendí el rol de cliente-servidor.                                    | 4.0      |
+| **Actividad 3: Análisis del servidor (server.js)**           | Completada                      | Analicé el código, identifiqué los eventos de conexión y cómo se transmitían los datos en tiempo real.                                  | 4.0      |
+| **Actividad 4: Explorando los clientes (page2.js)**          | No completada                   | No realicé los experimentos de la consola ni las pruebas de posición o background.                                                      | 0.0      |
+| **Actividad 5: Aplicación propia (Pong)**                    | Completada y con esfuerzo extra | Creé una aplicación Pong en tiempo real con comunicación entre dos clientes y un servidor central. Compensa la falta de la Actividad 4. | 4.0      |
+| **Autoevaluación**                                           | Completada                       |                                                                     |        |
+
+(4.0+4.0+4.0+0.0+5.0)/5=  3.4
 
 
-
+Siento que en esta unidad debi poner mas pruebas (imagenes) y en cuanto a la unidad 4 no la hice porque no supe como avanzar en ella y prefiero dejarla vacia que inventar cosas para llenar y tambien porque considero que me hubiera quedado un poco mejor el PONG.
