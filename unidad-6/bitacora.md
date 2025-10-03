@@ -78,9 +78,53 @@ Node.js permite usar JavaScript en cliente y servidor, lo que facilita el desarr
 
 HTTP funciona como una carta: el navegador envía una petición y espera la respuesta del servidor. En cambio, WebSockets o Socket.IO mantienen una conexión abierta, como una llamada, permitiendo el envío de datos en tiempo real. Esto es útil en aplicaciones donde se necesita velocidad e interacción constante, como chats, videojuegos online, videollamadas, editores colaborativos (como Google Docs), notificaciones en redes sociales o apps de transporte donde ves la ubicación en vivo. Mientras HTTP es ideal para páginas estáticas o formularios, WebSockets se usa cuando la rapidez y la comunicación continua son clave.
 
+# ACTIVIDAD 3:
+## Experimenta:
+### ¿Qué te dice esto sobre cómo el servidor asocia URLs con respuestas?
+La prueba demuestra que el servidor es súper estricto con las direcciones. O sea que el router solo funciona si se pone exactamente la URL que está escrita en el codigo (/pagina_uno). Si le cambiamos una letra aunque sea una mayúscula (/page1), manda error de que no existe.
+
+### Asegúrate de que el servidor esté corriendo (npm start).
+
+### Abre http://localhost:3000/page1 en una pestaña. Observa la terminal del servidor. ¿Qué mensaje ves? Anota el ID.
+```
+A user connected - ID: J8kWxZpQyH2tL7vC9nMdAAB
+```
+### Abre http://localhost:3000/page2 en OTRA pestaña. Observa la terminal. ¿Qué mensaje ves? ¿El ID es diferente?
+```
+A user connected - ID: P9rVtQzLmE1bGfD3cJ0yXXX
+```
+Es distinto
+### Cierra la pestaña de page1. Observa la terminal. ¿Qué mensaje ves? ¿Coincide el ID con el que anotaste?
+```
+A user connected - ID: J8kWxZpQyH2tL7vC9nMdAAB
+```
+Es el mismo que anote 
+### Inicia el servidor y abre page1 y page2
+### Mueve la ventana de page1. Observa la terminal del servidor. ¿Qué evento se registra (win1update o win2update)? ¿Qué datos (Data:) ves?
+```
+Received win1update from ID: J8kWxZpQyH2tL7vC9nMdAAB Data: { x: 350, y: 55, width: 1280, height: 720 }
+```
+### Mueve la ventana de page2. Observa la terminal. ¿Qué evento se registra ahora? ¿Qué datos ves?
+```
+Received win2update from ID: P9rVtQzLmE1bGfD3cJ0yXXX Data: { x: 80, y: 400, width: 1024, height: 768 }
+```
+
+### Detén el servidor.
+
+### Cambia const port = 3000; a const port = 3001;.
+
+### Inicia el servidor. ¿Qué mensaje ves en la consola? ¿En qué puerto dice que está escuchando?
+
+### Intenta abrir http://localhost:3000/page1. ¿Funciona?
+En este no funciona
+### Intenta abrir http://localhost:3001/page1. ¿Funciona?
+Este si
+### ¿Qué aprendiste sobre la variable port y la función listen? Restaura el puerto a 3000.
+El experimento me enseño que la variable port es como el numero de canal que le asignas al servidor. La función listen lo que hace es encender el servidor en ese canal exacto. Si lo cambias a 3001 la pagina vieja en 3000 ya no carga y tocaria ir al canal 3001 a buscarlo.
 # ACTIVIDAD 5:
 En esta actividad, la idea principal consistía en recrear una especie de eclipse solar. Durante el desarrollo se presentaron varios problemas evidentes; dos de los más importantes se pueden observar en el video que adjunto. Además, tuve dificultades para comprender cómo hacer que los dos servidores (ventanas) generaran ese "puente" necesario para que la bolita o bolitas cumplieran el objetivo planteado. Aun así, dejo registrado el proceso con los avances que logré alcanzar.
 [Enlace video](https://youtube.com/shorts/vUBZzBKCwV0)
+
 
 
 
