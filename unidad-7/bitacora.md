@@ -45,4 +45,8 @@ Si conectamos dos escritorios y un móvil, y el móvil envía el mensaje, solo l
 Los mensajes console.log son cruciales para depurar: nos avisan cuando un cliente se conecta o se desconecta, y lo más importante, confirman que el servidor recibió los datos del móvil (las coordenadas) justo antes de retransmitirlos.
 
 
+# ACTIVIDAD 4:
+Realiza un diagrama donde muestres el flujo completo de datos y eventos entre los tres componentes: móvil, servidor y escritorio. Puedes ilustrar con un ejemplo de coordenadas táctiles (x, y) y cómo viajan a través del sistema.
+<img width="668" height="728" alt="Captura de pantalla 2025-10-17 100029" src="https://github.com/user-attachments/assets/06d55598-d6c7-490c-aa7f-c02ccd5a2cd9" />
+
 
