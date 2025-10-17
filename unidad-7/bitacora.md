@@ -67,12 +67,13 @@ Realiza un diagrama donde muestres el flujo completo de datos y eventos entre lo
 # AUTOEVALUACIÓN 
 | **Actividad**           | **Estado**     | **Argumento de cumplimiento**                                                                                                                        | **Resultado (valor relativo)** |
 | ----------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| **Actividad 1**         | Completa     | Explica correctamente el uso de **socket ID**, el **type: 'touch'** y el manejo del servidor con varios dispositivos.                                | 5.0                            |
-| **Actividad 2**         | Completa     | Describe bien el uso de **Dev Tunnels**, la función **touchMoved()** y la utilidad del **threshold**. Compara de forma clara Dev Tunnels e IP local. | 5.0                            |
-| **Actividad 3**         | Completa     | Detalla el flujo del mensaje táctil y el uso de **socket.emit**, **broadcast** y **express.static()**.                                               | 5.0                            |
-| **Actividad 4**         | Completa     | Presenta un diagrama del flujo de datos entre **móvil, servidor y escritorio**, con el recorrido de coordenadas.                                     | 5.0                            |
+| **Actividad 1**         | Completa     | Explico el uso de **socket ID**, el **type: 'touch'** y el manejo del servidor con varios dispositivos.                                | 5.0                            |
+| **Actividad 2**         | Completa     | Describo el uso de **Dev Tunnels**, la función **touchMoved()** y la utilidad del **threshold**. Compara de forma clara Dev Tunnels e IP local. | 5.0                            |
+| **Actividad 3**         | Completa     | Detallo el flujo del mensaje táctil y el uso de **socket.emit**, **broadcast** y **express.static()**.                                               | 5.0                            |
+| **Actividad 4**         | Completa     | Present el diagrama del flujo de datos entre **móvil, servidor y escritorio**, con el recorrido de coordenadas.                                     | 5.0                            |
 | **Actividad 5 (Apply)** | No realizada | No se hizo la actividad práctica final.                                                                                                              | 0.0                            |
-| **Autoevaluación**      | Completa     | Se realizó correctamente.                                                                                                                            | 5.0                            |
+| **Autoevaluación**      | Completa     | Si la realice                                                                                                                            | 5.0                            |
 
+Teniendo en cuenta la rúbrica al no hacer una actividad en este caso saco 3.0 ya que considero que cumplí con las actividades dejando los procesos en la bitácora.
 
 
