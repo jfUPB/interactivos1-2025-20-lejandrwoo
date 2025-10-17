@@ -11,6 +11,10 @@ touchMoved() es la función de p5.js que se activa sin parar mientras muevo mi d
 ## 3. Compara brevemente Dev Tunnels con simplemente usar la IP local. ¿Cuáles son las ventajas y desventajas de cada uno?
 Usar la IP local es rápido, pero solo sirve si ambos estamos en el mismo Wi-Fi y mi firewall no molesta. Dev Tunnels es mejor porque me da una URL pública segura (HTTPS) que funciona en cualquier red (incluso con datos móviles), permitiendo probar la app en cualquier sitio.
 <img width="1024" height="768" alt="Cuadro comparativo proyecto de investigación ilustrado azul y naranja" src="https://github.com/user-attachments/assets/12b2b9a8-6ab2-4bb3-9f17-76a676195abf" />
+<img width="325" height="411" alt="image" src="https://github.com/user-attachments/assets/334a446e-84b0-4c05-9e4d-980fbc876f96" />
+<img width="242" height="317" alt="bolita" src="https://github.com/user-attachments/assets/9daf8354-0ff4-4ae6-9c46-1069687d1009" />
+
+
 # ACTIVIDAD 3:
 ## 1. Función de express.static('public')
 express.static('public') hace que el servidor envíe automáticamente todos los archivos estáticos (HTML, JS, CSS) de la carpeta public sin necesidad de escribir una ruta específica para cada uno. A diferencia de app.get(), que es para rutas específicas, esta función maneja múltiples archivos de golpe, facilitando la carga de nuestra interfaz.
@@ -48,5 +52,6 @@ Los mensajes console.log son cruciales para depurar: nos avisan cuando un client
 # ACTIVIDAD 4:
 Realiza un diagrama donde muestres el flujo completo de datos y eventos entre los tres componentes: móvil, servidor y escritorio. Puedes ilustrar con un ejemplo de coordenadas táctiles (x, y) y cómo viajan a través del sistema.
 <img width="668" height="728" alt="Captura de pantalla 2025-10-17 100029" src="https://github.com/user-attachments/assets/06d55598-d6c7-490c-aa7f-c02ccd5a2cd9" />
+
 
 
