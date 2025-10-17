@@ -1,5 +1,16 @@
 
 # Evidencias de la unidad 7
+# ACTIVIDAD 1:
+## ¿Por qué la compu y el celular necesitan códigos (socket ID) diferentes?	
+Para que el servidor sepa a cuál de los dos enviarle la respuesta. Si un celular mueve una bolita, el servidor necesita saber a qué otro dispositivo mandarle esa actualización.
+
+## ¿Qué es ese type: 'touch' que se repite tanto?
+
+Es como la etiqueta que le pone el celular al mensaje para decirle al servidor que lo que está enviando son datos de un toque o movimiento.
+
+## Si se conectan 10 celulares, ¿se pondrá lento el servidor?
+Probablemente sí, porque tiene que manejar muchos mensajes al mismo tiempo, aunque las librerías de sockets están diseñadas para manejar varias conexiones.
+<img width="899" height="461" alt="termianl" src="https://github.com/user-attachments/assets/4abb7ad2-00bb-44dd-b513-7dbfe36b53d1" />
 
 # ACTIVIDAD 2:
 ## 1. ¿Por qué es necesario Dev Tunnels y cómo funciona conceptualmente?
@@ -52,6 +63,7 @@ Los mensajes console.log son cruciales para depurar: nos avisan cuando un client
 # ACTIVIDAD 4:
 Realiza un diagrama donde muestres el flujo completo de datos y eventos entre los tres componentes: móvil, servidor y escritorio. Puedes ilustrar con un ejemplo de coordenadas táctiles (x, y) y cómo viajan a través del sistema.
 <img width="668" height="728" alt="Captura de pantalla 2025-10-17 100029" src="https://github.com/user-attachments/assets/06d55598-d6c7-490c-aa7f-c02ccd5a2cd9" />
+
 
 
 
