@@ -326,3 +326,26 @@ void main() {
     fragColor = vec4(finalRGB, textureColor.a);
 }
 ```
+# PROCESOS:
+
+
+
+https://github.com/user-attachments/assets/d1ef83c0-7698-4090-a090-421fc87579a6
+
+
+
+
+https://github.com/user-attachments/assets/b9fc9edb-24b9-45ea-8d84-c4deea4544d6
+
+
+
+https://github.com/user-attachments/assets/cda8ca87-d3a3-48de-b2e8-c4d68cde2d84
+
+# AUTOV
+| Ítem                | Descripción                                                 | Cumplimiento             | Valor (%) | Justificación                                                                                                                                                                                                      |
+| ------------------- | ----------------------------------------------------------- | ------------------------ | --------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1                   | Actividad 1 (concepto, bitácora, evidencias, **diagrama**)  |  Parcialmente cumplida |        12 | Entregué concepto, bitácora y evidencias, **pero no** realicé el diagrama.                                                                                                                                         |
+| 2                   | Actividad 2 (proyecto 100% funcional y presentado en clase) | Cumplida completamente |        12 | Proyecto completo, funcional y presentado en clase según la exigencia.                                                                                                                                             |
+| 3                   | Autoevaluación                                              | Cumplida completamente |        12 | Autoevaluación realizada con reflexión y honestidad.                                                                                                                                                               |
+| **Resultado final** | **Nivel según rúbrica**                                     | **Nota = 4**             |           | Realicé la actividad 1 casi por completo (falta el diagrama), la actividad 2 está completa y funcional y presenté en clase; además hice la autoevaluación. Según la rúbrica, esto corresponde a una **nota de 4**. |
+
